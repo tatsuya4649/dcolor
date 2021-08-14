@@ -1,5 +1,5 @@
 
-class CoulorModeMeta(type):
+class ColourModeMeta(type):
     def __new__(
         metacls,
         cls,
@@ -22,11 +22,12 @@ class CoulorModeMeta(type):
             attributes,
         )
 
-class CMMember(metaclass=CoulorModeMeta):
+class CMMember(metaclass=ColourModeMeta):
     def __str__(self):
         raise NotImplementedError(
             "__str__ not define"
         )
+
     def __call__(self):
         raise NotImplementedError(
             "__call__ not define"

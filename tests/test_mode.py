@@ -33,16 +33,16 @@ def test_mode_str_attribute_error(mode):
             mode
         )
 
-def test_mode_str_type_error():
-
+def test_mode_str_type_error2():
+    class B:
+        pass
     class A:
         def __init__(self):
-            self.value = 10
+            self.value = B
 
-    a = A()
     with pytest.raises(
         TypeError
     ):
-        ColourMode._mode_str(
-            a
+        result = ColourMode._mode_str(
+            A()
         )

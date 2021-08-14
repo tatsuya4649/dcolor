@@ -1,5 +1,5 @@
 from .cm import CMMember
-from .where import BaseWhere
+from .where import BaseWhere, ColourWhere
 
 class Index(CMMember, BaseWhere):
     _MODESTR="index"
@@ -8,17 +8,17 @@ class Index(CMMember, BaseWhere):
         *args,
         **kwargs
     ):
-        if len(args) == 0 or len(kwargs) == 0:
+        if len(args) == 0 and len(kwargs) == 0:
             return Index._MODESTR
         
         return super().__new__(
-            cls,**kwargs
+            cls
         )
 
     def __init__(
         self,
         index,
-        where,
+        where=ColourWhere.CHARACTER,
     ):
         self.index = index
         self.where = where
@@ -28,12 +28,12 @@ class Index(CMMember, BaseWhere):
 
     @staticmethod
     def index_string(index, where):
-        return f"\033[;{where.value};5;{self.index}m"
+        return f"\033[;{where.value};5;{index}m"
 
     def __call__(self):
         return self.index_string(
-            index=self.index
-            where=self.where
+            index=self.index,
+            where=self.where,
         )
 
     @property

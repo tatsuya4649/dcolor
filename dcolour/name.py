@@ -1,6 +1,6 @@
 from enum import Enum
 from .cm import CMMember
-from .where import BaseWhere
+from .where import BaseWhere, ColourWhere
 from .index import Index
 
 class NameList(Enum):
@@ -74,20 +74,22 @@ class Name(CMMember, BaseWhere):
     _MODESTR="name"
     def __new__(
         cls,
-        **kwargs
+        *args,
+        **kwargs,
     ):
-        if len(args) == 0 or len(kwargs) == 0:
+        if len(args) == 0 and len(kwargs) == 0:
             return Name._MODESTR
         return super().__new__(
-            cls,**kwargs
+            cls
         )
 
     def __init__(
         self,
         colour,
-        where,
+        where=ColourWhere.CHARACTER,
     ):
         self.colour = colour
+        self.where = where
 
     @property
     def colour(self):
@@ -99,33 +101,32 @@ class Name(CMMember, BaseWhere):
             raise TypeError(
                 "colour must be str or int type."
             )
-        colour = None
         if isinstance(value, str):
             for x in NameList:
                 if x.value["name"] == value:
-                    colour = x
-                    break
+                    self._colour = x
+                    return
             raise ValueError(
                 "invalid colour string."
-                f"valid colour string({','.join([x.value['name'] for x in NameList])})"
+                f"valid colour string({','.join([x.value['name'] for x in NameList])}) ."
+                f"now {value}"
             )
         if isinstance(value, int):
             for x in NameList:
-                if x.value["number"] = value:
-                    colour = x
-                    break
+                if x.value["number"] == value:
+                    self._colour = x
+                    return
             raise ValueError(
                 "invalid colour number."
                 f"valid colour numebr({','.join([x.value['name'] for x in NameList])})"
             )
-        self._colour = value
 
     def __str__(self):
         return self._MODESTR
 
     def __call__(self):
         return Index.index_string(
-            index=self.color.value["number"]
-            where=self.where
+            index=self.colour.value["number"],
+            where=self.where,
         )
 

@@ -27,7 +27,7 @@ class ColourMode(Enum):
     def mode(mode):
         for _mode in ColourMode:
             if ColourMode._mode_str(_mode) == mode:
-                return True
+                return _mode.value
         raise ValueError(
             f"mode({mode}) is invalid value. "
             f"valid value({','.join([x.value() for x in ColourMode])})."

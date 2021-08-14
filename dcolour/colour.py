@@ -1,14 +1,18 @@
 from .mode import ColourMode
+from .where import BaseWhere
+from .deco import _decorate_base
 
-class Coulor:
+
+class Colour(BaseWhere, metaclass=_decorate_base):
     def __init__(
         self,
-        color,
+        colour,
         mode,
         where,
     ):
-        self.mode = mode(color)
-        self._color = color
+        self.mode = mode
+        self._colour = colour
+        self.where = where
     
     @property
     def mode(self):
@@ -16,24 +20,21 @@ class Coulor:
 
     @mode.setter
     def mode(self, value):
-        if not isinstance(value, str):
+        if not isinstance(value, (str, ColourMode)):
             raise TypeError(
                 "mode must be str type."
             )
-        # check valid mode value
-        ColourMode.mode(value)
-        self._mode = value
+        if isinstance(value, str):
+            # check valid mode value
+            self._mode = ColourMode.mode(value)
+        else:
+            self._mode = value
 
-    @property
-    def where(self):
-        return self._where
-
-    @where.setter
-    def where(self, value):
-        if not type(value) is ColourWhere:
-            raise TypeError(
-                "where must be ColourWhere."
-            )
-        self._where = value
     def __call__(self):
-        return self.mode(self._color)()
+        return self.mode(
+            colour=self._colour,
+            where=self.where,
+        )()
+
+    def start(self):
+        return self.__call__()

@@ -3,7 +3,7 @@
 
 dcolour is open-source package for Python.
 
-dcolour for easily modifying character output.
+dcolour for easily modifying charactor.
 
 ## Install
 

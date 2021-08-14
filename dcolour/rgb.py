@@ -1,25 +1,27 @@
 import re
 from .cm import CMMember
-from .where import BaseWhere
+from .where import BaseWhere, ColourWhere
 
 class RGB(CMMember, BaseWhere):
     _MODESTR="rgb"
     def __new__(
         cls,
-        **kwargs
+        *args,
+        **kwargs,
     ):
-        if len(args) == 0 or len(kwargs) == 0:
+        if len(args) == 0 and len(kwargs) == 0:
             return RGB._MODESTR
         
         return super().__new__(
-            cls,**kwargs
+            cls
         )
     def __init__(
         self,
         rgb,
-        where,
+        where=ColourWhere.CHARACTER,
     ):
         self.rgb = rgb
+        self.where = where
 
     @property
     def rgb(self):
@@ -36,28 +38,52 @@ class RGB(CMMember, BaseWhere):
                 "rbg must be str or dict,list type."
             )
         if isinstance(value, str):
-            self._rgb_string(value)
+            self._rgb_string(self, value)
         if isinstance(value, dict):
-            self._rgb_dict(value)
+            self._rgb_dict(self, value)
         if isinstance(value, (list, tuple)):
-            self._rgb_list(value)
+            self._rgb_list(self, value)
+    
+    @staticmethod
+    def _instance(cls):
+        # check if the class is an instance
+        if type(cls) is type:
+            raise ValueError(
+                "cls must be instance."
+            )
 
     @staticmethod
-    def _rgb_string(value):
+    def _rgb_string(cls, value):
+        RGB._instance(cls)
+        if not isinstance(value, str):
+            raise ValueError(
+                "value must be str."
+                f"now ({type(value)})"
+            )
+        rgb_strings = re.finditer(
+            r"(\w+|.)\s*=\s*\d+\s*,?",
+            value,
+        )
+        for string in rgb_strings:
+            if re.search(r"[rR]|[gG]|[bB]", string.group()) is None:
+                raise ValueError(
+                    f"invalid rgb value.({string.group()}?)"
+                    f"now value ({value})"
+                )
         devide = re.finditer(
             r"(([rR]|[gG]|[bB])\s*=\s*)?(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])(,?)(\s*)",
             value,
         )
         rgb = dict()
         left = list()
-        for a in result:
+        for part in devide:
             string = re.search(
                 r"[rR]|[gG]|[bB]",
-                a.group(),
+                part.group(),
             )
             number = re.search(
                 r"(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])",
-                a.group(),
+                part.group(),
             )
             number = int(number.group())
             if string is not None:
@@ -78,10 +104,16 @@ class RGB(CMMember, BaseWhere):
                 rgb.setdefault(colour, i)
                 break
 
-        RGB._rgb_dict(rgb)
+        RGB._rgb_dict(cls, rgb)
 
     @staticmethod
-    def _rgb_dict(value):
+    def _rgb_dict(cls, value):
+        RGB._instance(cls)
+        if not isinstance(value, dict):
+            raise ValueError(
+                "value must be dict."
+                f"now ({type(value)})"
+            )
         keys = list(set(value.keys()))
         lower_keys = dict()
         for key in keys:
@@ -94,7 +126,7 @@ class RGB(CMMember, BaseWhere):
                     "RGB dict value must be int type. "
                     f"now {type(value[key])}"
                 )
-            number = RGB._valid_value(value[keys])
+            number = RGB._valid_value(value[key])
             lower_keys[key.lower()] = number
 
         if len(lower_keys) != 3:
@@ -102,23 +134,35 @@ class RGB(CMMember, BaseWhere):
                 "rgb dict keys must be 'R', 'G', 'B'. "
                 f"now {list(value.keys())}."
             )
-        self._r = lower_keys["r"]
-        self._g = lower_keys["g"]
-        self._b = lower_keys["b"]
+        if "r" not in lower_keys or "g" not in lower_keys or \
+                "b" not in lower_keys:
+            raise KeyError(
+                "rgb invalid key."
+                f"valid key(r, g, b). "
+                f"now ({','.join(keys)})"
+            )
+        cls._r = lower_keys["r"]
+        cls._g = lower_keys["g"]
+        cls._b = lower_keys["b"]
 
     @staticmethod
-    def _rgb_list(value):
+    def _rgb_list(cls, value):
+        RGB._instance(cls)
         if len(value) != 3:
             raise ValueError(
                 "rgb list must be [R, G, B]. "
                 f"now {value}"
             )
-        self._r = self._valid_value(value[0])
-        self._g = self._valid_value(value[1])
-        self._b = self._valid_value(value[2])
+        cls._r = RGB._valid_value(value[0])
+        cls._g = RGB._valid_value(value[1])
+        cls._b = RGB._valid_value(value[2])
     
     @staticmethod
     def _valid_value(number):
+        if not isinstance(number, int):
+            raise TypeError(
+                "rgb list's element must be int type."
+            )
         if number > 255 or number < 0:
             raise ValueError(
                 "rgb must be 0~255."
