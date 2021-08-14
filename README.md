@@ -1,6 +1,12 @@
 
 # dcolor
 
+![issues](https://img.shields.io/github/issues/tatsuya4649/dcolor)
+![forks](https://img.shields.io/github/forks/tatsuya4649/dcolor)
+![starts](https://img.shields.io/github/forks/tatsuya4649/dcolor)
+![python](https://img.shields.io/pypi/pyversions/dcolor)
+![pypi](https://badge.fury.io/py/dcolor.svg)
+
 dcolor is open-source package for Python.
 
 dcolor for easily modifying charactor.
@@ -55,7 +61,6 @@ print(attr_string)
 output:
 
 ![attributes](https://raw.githubusercontent.com/tatsuya4649/dcolor/main/docs/assets/usage/attributes.py)
-
 
 ## LICENSE
 
