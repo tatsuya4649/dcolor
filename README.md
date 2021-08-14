@@ -25,7 +25,7 @@ print("Hello World")
 
 output:
 
-![normal](https://raw.githubusercontent.com/tatsuya4649/dcolor/main/docs/assets/usage/normal.py)
+![normal](https://raw.githubusercontent.com/tatsuya4649/dcolor/master/docs/assets/usage/normal.png)
 
 ```python:colors.py
 for dcolor import colors
@@ -37,7 +37,7 @@ print(color_string)
 
 output:
 
-![colors](https://raw.githubusercontent.com/tatsuya4649/dcolor/main/docs/assets/usage/colors.py)
+![colors](https://raw.githubusercontent.com/tatsuya4649/dcolor/master/docs/assets/usage/colors.png)
 
 ```python:backgrounds.py
 for dcolor import backgrounds
@@ -48,7 +48,7 @@ print(back_string)
 ```
 output:
 
-![backgrounds](https://raw.githubusercontent.com/tatsuya4649/dcolor/main/docs/assets/usage/backgrounds.py)
+![backgrounds](https://raw.githubusercontent.com/tatsuya4649/dcolor/master/docs/assets/usage/backgrounds.png)
 
 ```python:attributes.py
 for dcolor import attributes
@@ -60,7 +60,7 @@ print(attr_string)
 
 output:
 
-![attributes](https://raw.githubusercontent.com/tatsuya4649/dcolor/main/docs/assets/usage/attributes.py)
+![attributes](https://raw.githubusercontent.com/tatsuya4649/dcolor/master/docs/assets/usage/attributes.png)
 
 ## LICENSE
 
