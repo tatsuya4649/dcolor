@@ -1,6 +1,6 @@
 import pytest
 from unittest import mock
-from dcolour.where import *
+from dcolor.where import *
 
 @pytest.fixture(scope="function", autouse=False)
 def where_init():
@@ -15,8 +15,8 @@ def test_init():
     "value",
     1,
     1.0,
-    [ColourWhere.CHARACTER],
-    {"where": ColourWhere.CHARACTER},
+    [ColorWhere.CHARACTER],
+    {"where": ColorWhere.CHARACTER},
 ])
 def test_where_type_err(where_init, value):
     with pytest.raises(
@@ -26,14 +26,14 @@ def test_where_type_err(where_init, value):
 
 @pytest.mark.parametrize(
     "value", 
-    [x for x in ColourWhere]
+    [x for x in ColorWhere]
 )
 def test_where(where_init, value):
     where_init.where = value
 
 def test_end_none(where_init):
     with mock.patch(
-        "dcolour.where.BaseWhere.where",
+        "dcolor.where.BaseWhere.where",
         new_callable=mock.PropertyMock(),
     ) as mock_where:
         mock_where.return_value = None

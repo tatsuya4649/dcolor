@@ -1,12 +1,12 @@
 import pytest
-from dcolour.name import *
-from dcolour.where import *
+from dcolor.name import *
+from dcolor.where import *
 
 @pytest.fixture(scope="function", autouse=False)
 def name_init():
     name = Name(
-        colour="red",
-        where=ColourWhere.CHARACTER,
+        color="red",
+        where=ColorWhere.CHARACTER,
     )
     yield name
 
@@ -18,59 +18,59 @@ def test_init_string():
 
 def test_init_str_type():
     result = Name(
-        colour="red",
+        color="red",
     )
 def test_init_int_type():
     result = Name(
-        colour=1,
+        color=1,
     )
 
 @pytest.mark.parametrize(
     "where", [
-    ColourWhere.CHARACTER,
-    ColourWhere.BACKGROUND,
+    ColorWhere.CHARACTER,
+    ColorWhere.BACKGROUND,
 ])
 def test_init_where(where):
     result = Name(
-        colour="red",
+        color="red",
         where=where,
     )
 
 @pytest.mark.parametrize(
-    "colour", [
+    "color", [
     10.0,
-    b"colour",
+    b"color",
     ["red"],
-    {"colour": "red"},
+    {"color": "red"},
 ])
-def test_colour_type_err(colour):
+def test_color_type_err(color):
     with pytest.raises(
         TypeError
     ):
         Name(
-            colour=colour,
-            where=ColourWhere.CHARACTER,
+            color=color,
+            where=ColorWhere.CHARACTER,
         )
 
-def test_colour_value_err():
+def test_color_value_err():
     with pytest.raises(
         ValueError
     ):
         Name(
-            colour="colour",
-            where=ColourWhere.CHARACTER,
+            color="color",
+            where=ColorWhere.CHARACTER,
         )
 
-def test_colour_value_err2():
+def test_color_value_err2():
     with pytest.raises(
         ValueError
     ):
         Name(
-            colour=300,
-            where=ColourWhere.CHARACTER,
+            color=300,
+            where=ColorWhere.CHARACTER,
         )
 
-def test_colour_str(name_init):
+def test_color_str(name_init):
     result = str(name_init)
     assert isinstance(result, str)
     assert result == Name._MODESTR

@@ -1,13 +1,13 @@
 import pytest
-from dcolour.index import *
-from dcolour.where import *
+from dcolor.index import *
+from dcolor.where import *
 
 
 @pytest.fixture(scope="function", autouse=False)
 def index_init():
     index = Index(
         index=255,
-        where=ColourWhere.BACKGROUND,
+        where=ColorWhere.BACKGROUND,
     )
     yield index
     
@@ -15,7 +15,7 @@ def index_init():
 def test_init():
     Index(
         index=255,
-        where=ColourWhere.BACKGROUND,
+        where=ColorWhere.BACKGROUND,
     )
 
 @pytest.mark.parametrize(

@@ -1,19 +1,19 @@
-from .where import ColourWhere
-from .mode import ColourMode
-from .colour import Colour
+from .where import ColorWhere
+from .mode import ColorMode
+from .color import Color
 from .attr import Attr, AttrList
 
 
-def _colour(
-    colour,
-    mode=ColourMode.NAME.value(),
+def _color(
+    color,
+    mode=ColorMode.NAME.value(),
 ):
-    _colour = Colour(
-        colour=colour,
+    _color = Color(
+        color=color,
         mode=mode,
-        where=ColourWhere.CHARACTER,
+        where=ColorWhere.CHARACTER,
     )
-    return _colour
+    return _color
 
 def _check_string(value):
     if not isinstance(value, str):
@@ -22,13 +22,13 @@ def _check_string(value):
         )
     return value
 
-def colours(
+def colors(
     string,
-    colour,
-    mode=ColourMode.NAME.value(),
+    color,
+    mode=ColorMode.NAME.value(),
 ):
-    _cins = _colour(
-        colour=colour,
+    _cins = _color(
+        color=color,
         mode=mode,
     )
     return (
@@ -39,24 +39,24 @@ def colours(
 
 
 def _background(
-    colour,
-    mode=ColourMode.NAME.value(),
+    color,
+    mode=ColorMode.NAME.value(),
 ):
-    _colour = Colour(
-        colour=colour,
+    _color = Color(
+        color=color,
         mode=mode,
-        where=ColourWhere.BACKGROUND,
+        where=ColorWhere.BACKGROUND,
     )
-    return _colour
+    return _color
 
 
 def backgrounds(
     string,
-    colour,
-    mode=ColourMode.NAME.value(),
+    color,
+    mode=ColorMode.NAME.value(),
 ):
     _cins = _background(
-        colour=colour,
+        color=color,
         mode=mode,
     )
     return (

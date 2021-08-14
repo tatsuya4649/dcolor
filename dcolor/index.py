@@ -1,5 +1,5 @@
 from .cm import CMMember
-from .where import BaseWhere, ColourWhere
+from .where import BaseWhere, ColorWhere
 
 class Index(CMMember, BaseWhere):
     _MODESTR="index"
@@ -18,7 +18,7 @@ class Index(CMMember, BaseWhere):
     def __init__(
         self,
         index,
-        where=ColourWhere.CHARACTER,
+        where=ColorWhere.CHARACTER,
     ):
         self.index = index
         self.where = where

@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class ColourWhere(Enum):
+class ColorWhere(Enum):
     CHARACTER = "38"
     BACKGROUND = "48"
 
@@ -14,16 +14,16 @@ class BaseWhere:
 
     @where.setter
     def where(self, value):
-        if not type(value) is ColourWhere:
+        if not type(value) is ColorWhere:
             raise TypeError(
-                "where must be ColourWhere type."
+                "where must be ColorWhere type."
             )
         self._where = value
 
     def end(self):
-        if self.where == ColourWhere.CHARACTER:
+        if self.where == ColorWhere.CHARACTER:
             return "\033[;0m"
-        elif self.where == ColourWhere.BACKGROUND:
+        elif self.where == ColorWhere.BACKGROUND:
             return "\033[;0m"
         else:
             return None

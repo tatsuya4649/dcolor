@@ -1,19 +1,19 @@
 import pytest
-from dcolour.mode import *
+from dcolor.mode import *
 
 
 def test_mode():
-    ColourMode.mode("name")
+    ColorMode.mode("name")
 
 def test_mode_error():
     with pytest.raises(
         ValueError
     ):
-        ColourMode.mode("mode")
+        ColorMode.mode("mode")
 
 def test_mode_str():
-    result = ColourMode._mode_str(
-        ColourMode.NAME
+    result = ColorMode._mode_str(
+        ColorMode.NAME
     )
     assert isinstance(result, str)
 
@@ -29,7 +29,7 @@ def test_mode_str_attribute_error(mode):
     with pytest.raises(
         AttributeError
     ):
-        ColourMode._mode_str(
+        ColorMode._mode_str(
             mode
         )
 
@@ -43,6 +43,6 @@ def test_mode_str_type_error2():
     with pytest.raises(
         TypeError
     ):
-        result = ColourMode._mode_str(
+        result = ColorMode._mode_str(
             A()
         )

@@ -1,18 +1,18 @@
 import pytest
-from dcolour.cm import *
+from dcolor.cm import *
 
-def test_colourmodemeta_str_err():
+def test_colormodemeta_str_err():
     with pytest.raises(
         AttributeError
     ):
-        class A(metaclass=ColourModeMeta):
+        class A(metaclass=ColorModeMeta):
             ...
 
-def test_colourmodemeta_call_err():
+def test_colormodemeta_call_err():
     with pytest.raises(
         AttributeError
     ):
-        class A(metaclass=ColourModeMeta):
+        class A(metaclass=ColorModeMeta):
             def __str__(self):
                 pass
 

@@ -1,12 +1,12 @@
 import pytest
-from dcolour._dcolour import *
+from dcolor._dcolor import *
 
 _STRING = "Hello World"
 
-def test_colours():
-    result = colours(
+def test_colors():
+    result = colors(
         string=_STRING,
-        colour="red",
+        color="red",
     )
     assert isinstance(result, str)
     print(f"RESULT: {result}")
@@ -19,7 +19,7 @@ def test_colours():
 def test_backgrounds():
     result = backgrounds(
         string=_STRING,
-        colour="red",
+        color="red",
     )
     assert isinstance(result, str)
     print(f"RESULT: {result}")
@@ -38,13 +38,13 @@ def test_backgrounds():
     ["string"],
     {"string": "hello"},
 ])
-def test_colours_string_type_err(string):
+def test_colors_string_type_err(string):
     with pytest.raises(
         TypeError
     ):
-        colours(
+        colors(
             string=string,
-            colour="red",
+            color="red",
         )
 
 @pytest.mark.parametrize(

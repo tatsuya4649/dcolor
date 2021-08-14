@@ -1,5 +1,5 @@
 import pytest
-from dcolour.attr import *
+from dcolor.attr import *
 
 def attr_init():
     attr = Attr(

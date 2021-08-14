@@ -1,6 +1,6 @@
 import re
 from .cm import CMMember
-from .where import BaseWhere, ColourWhere
+from .where import BaseWhere, ColorWhere
 
 class RGB(CMMember, BaseWhere):
     _MODESTR="rgb"
@@ -18,7 +18,7 @@ class RGB(CMMember, BaseWhere):
     def __init__(
         self,
         rgb,
-        where=ColourWhere.CHARACTER,
+        where=ColorWhere.CHARACTER,
     ):
         self.rgb = rgb
         self.where = where
@@ -98,10 +98,10 @@ class RGB(CMMember, BaseWhere):
                 f"\"R=255,G=255,B=255\".now {value}"
             )
         for i in left:
-            for colour in "rgb":
-                if colour in rgb.keys():
+            for color in "rgb":
+                if color in rgb.keys():
                     continue
-                rgb.setdefault(colour, i)
+                rgb.setdefault(color, i)
                 break
 
         RGB._rgb_dict(cls, rgb)

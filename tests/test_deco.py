@@ -1,5 +1,5 @@
 import pytest
-from dcolour.deco import _decorate_base
+from dcolor.deco import _decorate_base
 
 def test_not_imple_call():
     with pytest.raises(

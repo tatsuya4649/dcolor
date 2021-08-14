@@ -1,5 +1,5 @@
 import pytest
-from dcolour.rgb import *
+from dcolor.rgb import *
 
 @pytest.fixture(scope="function", autouse=False)
 def rgb_init():

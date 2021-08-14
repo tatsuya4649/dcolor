@@ -4,11 +4,11 @@ from .name import Name
 from .rgb import RGB
 from .index import Index
 
-class ColourMode(Enum):
+class ColorMode(Enum):
     """
-    how to decide specific colour 
+    how to decide specific color 
     """
-    # specify colour string
+    # specify color string
     NAME=Name
     # R=0~255, G=0~255, B=0~255
     RGB=RGB
@@ -25,10 +25,10 @@ class ColourMode(Enum):
 
     @staticmethod
     def mode(mode):
-        for _mode in ColourMode:
-            if ColourMode._mode_str(_mode) == mode:
+        for _mode in ColorMode:
+            if ColorMode._mode_str(_mode) == mode:
                 return _mode.value
         raise ValueError(
             f"mode({mode}) is invalid value. "
-            f"valid value({','.join([x.value() for x in ColourMode])})."
+            f"valid value({','.join([x.value() for x in ColorMode])})."
         )
