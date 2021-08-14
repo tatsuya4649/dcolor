@@ -20,4 +20,7 @@ print(colours("Hello World!!!","red"))
 ```
 
 output:
+
+```html
     <span style="color: red; ">"Hello World!!!"</span>
+```
