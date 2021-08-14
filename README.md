@@ -1,14 +1,14 @@
 
-# dcolor
+# dcolour
 
-dcolor is open-source package for Python.
+dcolour is open-source package for Python.
 
-dcolor for easily modifying character output.
+dcolour for easily modifying charactor.
 
 ## Install
 
 ```
-$ pip install dcolor
+$ pip install dcolour
 ```
 
 ## Usage
