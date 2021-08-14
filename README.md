@@ -14,5 +14,10 @@ $ pip install dcolour
 ## Usage
 
 ```python
+for dcolour import colours
 
+print(colours("Hello World!!!","red"))
 ```
+
+output:
+    <span style="color: red; ">"Hello World!!!"</span>

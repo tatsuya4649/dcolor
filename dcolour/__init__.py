@@ -5,6 +5,7 @@ from .colour import Colour
 __all__ = [
     colours.__name__,
     backgrounds.__name__,
+    attributes.__name__,
     Colour.__name__,
     ColourMode.__name__,
 ]
